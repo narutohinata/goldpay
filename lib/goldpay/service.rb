@@ -5,7 +5,7 @@ module Goldpay
     HTTP_REG_SIGN_PARAMS = %w(bank_nm capAcntNm capAcntNo certif_id city_id cust_nm email lpassword mchnt_cd mchnt_txn_ssn mobile_no parent_bank_id password rem ver)
     def self.reg(params)
       params = perpare_params(params, HTTP_REG_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(reg.action)
+      url = GATEWAY_URL + %Q(reg.action)
       Net::HTTP.post_form(URI(url), params).body
       # Hash.from_xml(res)
     end
@@ -14,7 +14,7 @@ module Goldpay
     HTTP_ARTIFREG_SIGN_PARAMS = %w(artif_nm bank_nm capAcntNo certif_id city_id cust_nm email lpassword mchnt_cd mchnt_txn_ssn mobile_no parent_bank_id password rem ver)
     def self.artifReg(params)
       params = perpare_params(params, HTTP_ARTIFREG_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q("artifReg.action")
+      url = GATEWAY_URL + %Q("artifReg.action")
       Net::HTTP.post_form(URI(url), params).body
     end
 
@@ -22,7 +22,7 @@ module Goldpay
     HTTP_PRE_AUTH_SIGN_PARAMS = %w(amt in_cust_no mchnt_cd mchnt_txn_ssn out_cust_no rem ver)
     def self.perAuth(params)
       params = perpare_params(params, HTTP_PRE_AUTH_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(preAuth.action)
+      url = GATEWAY_URL + %Q(preAuth.action)
       Net::HTTP.post_form(URI(url), params).body
     end
 
@@ -30,7 +30,7 @@ module Goldpay
     HTTP_PRE_AUTH_CANCEL_SIGN_PARAMS = %w(contract_no in_cust_no mchnt_cd mchnt_txn_ssn out_cust_no rem ver)
     def self.perAuthCancel(params)
       params = perpare_params(params, HTTP_PRE_AUTH_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(preAuthCancel.action)
+      url = GATEWAY_URL + %Q(preAuthCancel.action)
       Net::HTTP.post_form(URI(url), params).body
     end
 
@@ -38,7 +38,7 @@ module Goldpay
     HTTP_TRANSFERBMU_SIGN_PARAMS = %w(amt contract_no in_cust_no mchnt_cd mchnt_txn_ssn out_cust_no rem ver)
     def self.transferBmu(params)
       params = perpare_params(params, HTTP_TRANSFERBMU_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(transferBmu.action)
+      url = GATEWAY_URL + %Q(transferBmu.action)
       Net::HTTP.post_form(URI(url), params).body
     end
 
@@ -46,7 +46,7 @@ module Goldpay
     HTTP_TRANSFERBU_SIGN_PARAMS = %w(amt contract_no in_cust_no mchnt_cd mchnt_txn_ssn out_cust_no rem ver)
     def self.transferBu(params)
       params = perpare_params(params, HTTP_TRANSFERBU_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(transferBu.action)
+      url = GATEWAY_URL + %Q(transferBu.action)
       Net::HTTP.post_form(URI(url), HTTP_TRANSFERBU_SIGN_PARAMS).body
     end
 
@@ -54,7 +54,7 @@ module Goldpay
     HTTP_FREEZE_SIGN_PARAMS = %w(amt cust_no mchnt_cd mchnt_txn_ssn rem ver)
     def self.freezeAccount(params)
       params = perpare_params(params, HTTP_FREEZE_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(freeze.action)
+      url = GATEWAY_URL + %Q(freeze.action)
       Net::HTTP.post_form(URI(url), HTTP_FREEZE_SIGN_PARAMS).body
     end
 
@@ -62,7 +62,7 @@ module Goldpay
     HTTP_TRANSFERBMU_ADN_FREEZE_SIGN_PARAMS = %w(amt in_cust_no mchnt_cd mchnt_txn_ssn out_cust_no rem ver)
     def self.transferBmuAndFreeze(params)
       params = perpare_params(params, HTTP_TRANSFERBMU_ADN_FREEZE_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(transferBmuAndFreeze.action)
+      url = GATEWAY_URL + %Q(transferBmuAndFreeze.action)
       Net::HTTP.post_form(URI(url), HTTP_TRANSFERBMU_ADN_FREEZE_SIGN_PARAMS).body
     end
 
@@ -70,7 +70,7 @@ module Goldpay
     HTTP_TRANSFERBU_AND_FREEZE_SIGN_PARMS = %w(amt in_cust_no mchnt_cd mchnt_txn_ssn out_cust_no rem ver)
     def self.transferBuAndFreeze(params)
       params = perpare_params(params, HTTP_TRANSFERBU_AND_FREEZE_SIGN_PARMS)
-      url = GATEWAY_URL << %Q(transferBuAndFreeze.action)
+      url = GATEWAY_URL + %Q(transferBuAndFreeze.action)
       Net::HTTP.post_form(URI(url), HTTP_TRANSFERBU_AND_FREEZE_SIGN_PARMS).body
     end
 
@@ -78,7 +78,7 @@ module Goldpay
     HTTP_TRANSFERBU_AND_FREEZE_TO_FREEZE_SIGN_PARAMS = %w(amt in_cust_no mchnt_cd mchnt_txn_ssn out_cust_no rem ver)
     def self.transferBuAndFreeze2Freeze(params)
       params = perpare_params(params, HTTP_TRANSFERBU_AND_FREEZE_TO_FREEZE_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(transferBuAndFreeze2Freeze.action)
+      url = GATEWAY_URL + %Q(transferBuAndFreeze2Freeze.action)
       Net::HTTP.post_form(URI(url), HTTP_TRANSFERBU_AND_FREEZE_TO_FREEZE_SIGN_PARAMS).body
     end
 
@@ -86,7 +86,7 @@ module Goldpay
     HTTP_UN_FREEZE_SIGN_PARAMS = %w(amt cust_no mchnt_cd mchnt_txn_ssn rem ver)
     def self.unFreeze(params)
       params = perpare_params(params, HTTP_UN_FREEZE_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(unFreeze.action)
+      url = GATEWAY_URL + %Q(unFreeze.action)
       Net::HTTP.post_form(URI(url), HTTP_UN_FREEZE_SIGN_PARAMS).body
     end
 
@@ -94,7 +94,7 @@ module Goldpay
     HTTP_USER_CHANGECARD_SIGN_PARAMS = %w(bank_cd card_no city_id login_id mchnt_cd mchnt_txn_ssn)
     def self.userChangeCard(params)
       params = perpare_params(params, HTTP_USER_CHANGECARD_SIGN_PARAMS)
-      url = GATEWAY_URL << %Q(userChangeCard.action)
+      url = GATEWAY_URL + %Q(userChangeCard.action)
       Net::HTTP.post_form(URI(url), HTTP_UN_FREEZE_SIGN_PARAMS).body
     end
 
