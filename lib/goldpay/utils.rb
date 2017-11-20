@@ -14,10 +14,13 @@ module Goldpay
        batch_no.ljust(24, rand(10).to_s)
     end
 
-    def self.verify?(params)
-      p params.match(/<plain>.+<\/plain>/)[0]
-      p params.match(/<signature>(.+)<\/signature>/)[1]
-      ::Goldpay::Sign::RSA.verify?(::Goldpay.config.public_key, params.match(/<plain>.+<\/plain>/)[0], params.match(/<signature>(.+)<\/signature>/)[1])
+    def self.xml_verify?(xml)
+      ::Goldpay::Sign::RSA.verify?(::Goldpay.config.public_key, xml.match(/<plain>.+<\/plain>/)[0], xml.match(/<signature>(.+)<\/signature>/)[1])
+    end
+
+    def self.json_verify?(params, keys)
+      string = keys.sort.map{|key| params[key]}.join('|')
+      ::Goldpay::Sign::RSA.verify?(::Goldpay.config.public_key, string, params["signature"])
     end
   end
 end

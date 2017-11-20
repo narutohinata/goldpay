@@ -47,15 +47,16 @@ EOF
       config.public_key  = PUBLIC_KEY
       config.mchnt_cd    = "0002900F0006944"
     end
-    # p Goldpay::Web::Service.web_reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', page_notify_url:'http://www.happysong.com.cn')
+    p Goldpay::Web::Service.web_reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', page_notify_url:'http://www.happysong.com.cn')
     # p Goldpay::Web::Service.web_artifreg({ver: '0.44', page_notify_url:'http://www.happysong.com.cn'})
     # p Goldpay::Web::Service.no_login_fast_recharge(login_id: '13678424821', amt: '10000', page_notify_url: 'http://www.happysong.com.cn')
-    p Goldpay::Service.reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', cust_nm: '麻美',  page_notify_url:'http://www.happysong.com.cn', mobile_no: "13265666809", city_id: 1000, parent_bank_id: 0102, capAcntNo: "1234567689")
+    # p Goldpay::Service.reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', cust_nm: '麻美',  page_notify_url:'http://www.happysong.com.cn', mobile_no: "13265666809", city_id: 1000, parent_bank_id: 0102, capAcntNo: "1234567689")
     xml = <<-XML
       <?xml version=\"1.0\" encoding=\"UTF-8\"?><ap><plain><resp_code>5019</resp_code><resp_desc>\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE8\xAF\xA5\xE9\x93\xB6\xE8\xA1\x8C\xE5\xBC\x80\xE6\x88\xB7</resp_desc><mchnt_cd>0002900F0006944</mchnt_cd><mchnt_txn_ssn>201711201411425210160000</mchnt_txn_ssn></plain><signature>zbWeeVPLDsEjfw5FfnfaYQzZ8JnHzh5GSq9PdtYrDgT3YznNncRVpfqmWMZbUutS2JJoec4/tp6cJN9uaLP3MeujI45PaekoTqHjHln3G+EMzOcUDMRJABs/CRtQ62MhctrX+Rz7uPMdxqiKUSgO723urOycSzJZZcbwK3MkT14=</signature></ap>
     XML
-    p hash
-    p Goldpay::Utils.verify?(xml)
+    keys = %w(bank_nm capAcntNo certif_id  city_id cust_nm email mchnt_cd mchnt_txn_ssn mobile_no parent_bank_id resp_code user_id_from)
+    data = {"capAcntNo"=>"", "user_id_from"=>"1", "city_id"=>"", "artif_nm"=>"", "email"=>"", "resp_code"=>"5002", "mchnt_cd"=>"0002900F0006944", "cust_nm"=>"储亮", "certif_id"=>"342921199412231510", "parent_bank_id"=>"", "signature"=>"aMJ7dy7M01LtAyTSGqpzYdyYO+haVu/22CHJiWGmCVVjACWyy0MDhSv9+Hpw5MNxDBqtm0mXF5zvajfacPnZPtMtINUki0JKO+xrqgGlMAIN6uUmq4vK6hxX8gNq35mxCXOodyq5KzyXnl25FFKKQs7E0BA459TfSaPd2+gEf+s=", "mchnt_txn_ssn"=>"201711201530402759500001", "mobile_no"=>"15665666809", "bank_nm"=>"", "controller"=>"api/v1/accounts", "action"=>"page_notify", "id"=>"1"}
+    p Goldpay::Utils.json_verify?(data, keys )
     # p Goldpay::Web::Service.no_login_fast_recharge(login_id: '13678424821', amt: '10000', page_notify_url: 'http://www.happysong.com.cn')
   end
 end
