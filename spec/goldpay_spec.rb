@@ -50,7 +50,12 @@ EOF
     # p Goldpay::Web::Service.web_reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', page_notify_url:'http://www.happysong.com.cn')
     # p Goldpay::Web::Service.web_artifreg({ver: '0.44', page_notify_url:'http://www.happysong.com.cn'})
     # p Goldpay::Web::Service.no_login_fast_recharge(login_id: '13678424821', amt: '10000', page_notify_url: 'http://www.happysong.com.cn')
-    # p Goldpay::Service.reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', cust_nm: '麻美',  page_notify_url:'http://www.happysong.com.cn', mobile_no: "13265666809", city_id: 1000, parent_bank_id: 0102, capAcntNo: "1234567689")
-    p Goldpay::Web::Service.no_login_fast_recharge(login_id: '13678424821', amt: '10000', page_notify_url: 'http://www.happysong.com.cn')
+    p Goldpay::Service.reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', cust_nm: '麻美',  page_notify_url:'http://www.happysong.com.cn', mobile_no: "13265666809", city_id: 1000, parent_bank_id: 0102, capAcntNo: "1234567689")
+    xml = <<-XML
+      <?xml version=\"1.0\" encoding=\"UTF-8\"?><ap><plain><resp_code>5019</resp_code><resp_desc>\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE8\xAF\xA5\xE9\x93\xB6\xE8\xA1\x8C\xE5\xBC\x80\xE6\x88\xB7</resp_desc><mchnt_cd>0002900F0006944</mchnt_cd><mchnt_txn_ssn>201711201411425210160000</mchnt_txn_ssn></plain><signature>zbWeeVPLDsEjfw5FfnfaYQzZ8JnHzh5GSq9PdtYrDgT3YznNncRVpfqmWMZbUutS2JJoec4/tp6cJN9uaLP3MeujI45PaekoTqHjHln3G+EMzOcUDMRJABs/CRtQ62MhctrX+Rz7uPMdxqiKUSgO723urOycSzJZZcbwK3MkT14=</signature></ap>
+    XML
+    p hash
+    p Goldpay::Utils.verify?(xml)
+    # p Goldpay::Web::Service.no_login_fast_recharge(login_id: '13678424821', amt: '10000', page_notify_url: 'http://www.happysong.com.cn')
   end
 end
