@@ -22,5 +22,10 @@ module Goldpay
       string = keys.sort.map{|key| params[key]}.join('|')
       ::Goldpay::Sign::RSA.verify?(::Goldpay.config.public_key, string, params["signature"])
     end
+
+    def self.sign(params, keys)
+      string = keys.sort.map{|key| params[key]}.join('|')
+     ::Goldpay::Sign::RSA.sign(::Goldpay.config.private_key, string)
+    end
   end
 end

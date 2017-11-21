@@ -47,7 +47,11 @@ EOF
       config.public_key  = PUBLIC_KEY
       config.mchnt_cd    = "0002900F0006944"
     end
-    p Goldpay::Web::Service.web_reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', page_notify_url:'http://www.happysong.com.cn')
+    # p Goldpay::Web::Service.web_reg(
+    # ver: '0.44',
+    # certif_tp: '1',
+    # certif_id: '340200199007191103',
+    # page_notify_url:'http://www.happysong.com.cn')
     # p Goldpay::Web::Service.web_artifreg({ver: '0.44', page_notify_url:'http://www.happysong.com.cn'})
     # p Goldpay::Web::Service.no_login_fast_recharge(login_id: '13678424821', amt: '10000', page_notify_url: 'http://www.happysong.com.cn')
     # p Goldpay::Service.reg(ver: '0.44', certif_tp: '1', certif_id: '340200199007191103', cust_nm: '麻美',  page_notify_url:'http://www.happysong.com.cn', mobile_no: "13265666809", city_id: 1000, parent_bank_id: 0102, capAcntNo: "1234567689")
@@ -56,7 +60,19 @@ EOF
     XML
     keys = %w(bank_nm capAcntNo certif_id  city_id cust_nm email mchnt_cd mchnt_txn_ssn mobile_no parent_bank_id resp_code user_id_from)
     data = {"capAcntNo"=>"", "user_id_from"=>"1", "city_id"=>"", "artif_nm"=>"", "email"=>"", "resp_code"=>"5002", "mchnt_cd"=>"0002900F0006944", "cust_nm"=>"储亮", "certif_id"=>"342921199412231510", "parent_bank_id"=>"", "signature"=>"aMJ7dy7M01LtAyTSGqpzYdyYO+haVu/22CHJiWGmCVVjACWyy0MDhSv9+Hpw5MNxDBqtm0mXF5zvajfacPnZPtMtINUki0JKO+xrqgGlMAIN6uUmq4vK6hxX8gNq35mxCXOodyq5KzyXnl25FFKKQs7E0BA459TfSaPd2+gEf+s=", "mchnt_txn_ssn"=>"201711201530402759500001", "mobile_no"=>"15665666809", "bank_nm"=>"", "controller"=>"api/v1/accounts", "action"=>"page_notify", "id"=>"1"}
-    p Goldpay::Utils.json_verify?(data, keys )
+    # p Goldpay::Utils.json_verify?(data, keys )
     # p Goldpay::Web::Service.no_login_fast_recharge(login_id: '13678424821', amt: '10000', page_notify_url: 'http://www.happysong.com.cn')
+    a = Goldpay::Utils.generate_batch_no
+    p a
+    p Goldpay::Web::Service.web_reg(
+        mchnt_txn_ssn: a,
+        ver: ' 0.44',
+        user_id_from: '1',
+        mobile_no: '15665666809',
+        cust_nm: '出量',
+        certif_tp: '0',
+        certif_id: '34292119412231510',
+        page_notify_url: 'http://localhost/api/v1/accounts/1',
+    )
   end
 end
